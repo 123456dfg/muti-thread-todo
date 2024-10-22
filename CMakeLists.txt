@@ -23,6 +23,7 @@ include_directories(
         ${OpenCV_LIBRARY_DIRS}
         ${EIGEN3_INCLUDE_DIR}
         ${CMAKE_SOURCE_DIR}/include
+        
 
 )
 add_executable(${PROJECT_NAME} ${sourcefile} main.cpp)
@@ -33,4 +34,5 @@ target_link_libraries(
         yaml-cpp
         /opt/intel/openvino_2024/runtime/lib/intel64/libopenvino.so
         openvino::frontend::onnx openvino::runtime
+        fmt::fmt
 )

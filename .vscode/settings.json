@@ -82,6 +82,7 @@
         "hash_set": "cpp",
         "future": "cpp",
         "valarray": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "core": "cpp"
     }
 }

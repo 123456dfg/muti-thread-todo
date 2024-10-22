@@ -8,7 +8,8 @@
 #include <vector>
 #include <memory>
 #include "ThreadPool.hpp"
-#include "model_infer/YoloXModel.hpp"
+#include "model_infer/auto_driver/YoloXModel.hpp"
+#include "model_infer/conf.hpp"
 namespace ipool
 {
     /**
@@ -25,7 +26,10 @@ namespace ipool
         std::string metadata_path_;
         std::string device_name_;
         float conf_threshold_;
-        int id_;
+        float nms_threshold_;
+        int topk_;
+
+        unsigned long long id_;
         std::mutex idMtx, queueMtx;
         std::unique_ptr<ThreadPool> pool;
         std::queue<std::future<outputType>> futs;
@@ -35,9 +39,10 @@ namespace ipool
 
     public:
         InferPool(const std::string model_path, std::string metadata_path, const std::string &device, float conf_threshold, int thread_num);
+        InferPool(const std::string model_path, const std::string &device, float conf_threshold, int topk, float nms_threshold, int thread_num);
         bool init();
         bool put(inputType inputData);
-        bool get(outputType outputData);
+        bool get(outputType &outputData);
         ~InferPool();
     };
 
@@ -62,6 +67,20 @@ namespace ipool
         this->metadata_path_ = metadata_path;
         this->device_name_ = device;
         this->conf_threshold_ = conf_threshold;
+
+        this->thread_num_ = thread_num;
+        this->id_ = 0;
+    }
+
+    template <typename Model, typename inputType, typename outputType>
+    inline InferPool<Model, inputType, outputType>::InferPool(const std::string model_path, const std::string &device, float conf_threshold, int topk, float nms_threshold, int thread_num)
+    {
+        this->model_path_ = model_path;
+        this->device_name_ = device;
+        this->conf_threshold_ = conf_threshold;
+        this->nms_threshold_ = nms_threshold;
+        this->topk_ = topk;
+
         this->thread_num_ = thread_num;
         this->id_ = 0;
     }
@@ -75,8 +94,15 @@ namespace ipool
         try
         {
             this->pool = std::make_unique<ThreadPool>(this->thread_num_);
-            for (int i = 0; i < this->thread_num_; i++)
+            for (int i = 0; i < this->thread_num_; i++){
+                #ifdef AUTO_DRIVER
                 models.push_back(std::make_shared<Model>(this->model_path_, this->device_name_, this->metadata_path_, this->conf_threshold_));
+                #endif
+                #ifdef RUNE_DRIVER
+                models.push_back(std::make_shared<Model>(this->model_path_, this->device_name_, this->conf_threshold_, this->topk_,this->nms_threshold_,true));
+                #endif
+
+            }
         }
         catch (const std::bad_alloc &e)
         {
@@ -114,7 +140,7 @@ namespace ipool
      * @brief 任务结果获取出口
      */
     template <typename Model, typename inputType, typename outputType>
-    inline bool InferPool<Model, inputType, outputType>::get(outputType outputData)
+    inline bool InferPool<Model, inputType, outputType>::get(outputType &outputData)
     {
         std::lock_guard<std::mutex> lock(queueMtx);
         if (futs.empty() == true)
