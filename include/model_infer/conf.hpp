@@ -10,7 +10,7 @@
 
 #define detect_r_tag_ false
 #define binary_thresh_ 100
-#define debug_ true
+#define debug_ false
 const int detect_color_ = 1; // 0-RED 1-BLUE
 const std::string model_path = "/home/dfg/backup/RM2025_VISION/rune_model_test/yolox_rune_3.6m.xml";
 

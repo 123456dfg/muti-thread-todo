@@ -29,8 +29,8 @@ namespace rune
   };
   enum class EnemyColor
   {
-    RED = 0,
-    BLUE
+    BLUE = 0,
+    RED
   };
 
   inline std::string enemyColorToString(EnemyColor color)
@@ -38,9 +38,9 @@ namespace rune
     switch (color)
     {
     case EnemyColor::RED:
-      return "RED";
-    case EnemyColor::BLUE:
       return "BLUE";
+    case EnemyColor::BLUE:
+      return "RED";
     default:
       return "UNKNOWN";
     }

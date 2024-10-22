@@ -9,19 +9,21 @@
 
 int main()
 {
-    int thread_num = 3;
+    int thread_num = 2;
     constexpr bool use_video = true;
-    constexpr bool use_img = true;
-    const std::string video_path = "/home/dfg/backup/RM2025_VISION/muti-thread-todo/resouce/traffic_sign1.mp4";
+    constexpr bool use_img = false;
+
     const std::string matadata_path = "/home/dfg/backup/RM2025_VISION/muti-thread-todo/resouce/metadata.yaml";
     const std::string img_path = "/home/dfg/driver_pkg_demo/000_1_0012.png";
     const std::string device = "CPU";
 
 #ifdef AUTO_DRIVER
     constexpr float conf = 0.6;
+    const std::string video_path = "/home/dfg/backup/RM2025_VISION/muti-thread-todo/resouce/traffic_sign1.mp4";
     ipool::InferPool<ipool::YoloXModel, cv::Mat, cv::Mat> testPool(model_path, matadata_path, device, conf, thread_num);
 #endif
 #ifdef RUNE_DRIVER
+    const std::string video_path = "/home/dfg/backup/RM2025_VISION/muti-thread-todo/resouce/file.mp4";
     constexpr int topk = 128;
     constexpr float conf = 0.6;
     constexpr float nms_threshold = 0.1;
@@ -76,7 +78,7 @@ int main()
             cv::Mat res = img.clone();
             if (frames >= thread_num && !testPool.get(res))
                 break;
-            cv::imshow("Camera FPS", res);
+            //cv::imshow("Camera FPS", res);
             if (cv::waitKey(1) == 'q') // 延时1毫秒,按q键退出/Press q to exit
                 break;
             frames++;

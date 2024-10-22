@@ -547,7 +547,7 @@ namespace rune
         cv::Mat resized_img = letterbox(src, transform_matrix);
         if (process(resized_img, transform_matrix))
         {
-            cv::Mat result_img;
+            cv::Mat result_img=src.clone();
             drawResult(result_img);
             return result_img;
         }
