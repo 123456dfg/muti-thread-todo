@@ -1,0 +1,59 @@
+description: Ultralytics YOLOv10n model trained on C:\Users\vipuser\Desktop\yolov10\traffic_sign\data.yaml
+author: Ultralytics
+date: '2024-08-25T21:04:41.291378'
+version: 8.1.34
+license: AGPL-3.0 License (https://ultralytics.com/license)
+docs: https://docs.ultralytics.com
+stride: 32
+task: detect
+batch: 1
+imgsz:
+- 480
+- 480
+names:
+  0: ANIMALS
+  1: CONSTRUCTION
+  2: CYCLES CROSSING
+  3: DANGER
+  4: NO ENTRY
+  5: PEDESTRIAN CROSSING
+  6: SCHOOL CROSSING
+  7: SNOW
+  8: STOP
+  9: bend left
+  10: bend right
+  11: bend
+  12: give way
+  13: go left or straight
+  14: go left
+  15: go right or straight
+  16: go right
+  17: go straight
+  18: keep left
+  19: keep right
+  20: no overtaking (trucks)
+  21: no overtaking -trucks-
+  22: no overtaking
+  23: no traffic both ways
+  24: no trucks
+  25: priority at next intersection
+  26: priority road
+  27: restriction ends (overtaking (trucks))
+  28: restriction ends (overtaking)
+  29: restriction ends -overtaking -trucks--
+  30: restriction ends -overtaking-
+  31: restriction ends 80
+  32: restriction ends
+  33: road narrows
+  34: roundabout
+  35: slippery road
+  36: speed limit 100
+  37: speed limit 120
+  38: speed limit 20
+  39: speed limit 30
+  40: speed limit 50
+  41: speed limit 60
+  42: speed limit 70
+  43: speed limit 80
+  44: traffic signal
+  45: uneven road
