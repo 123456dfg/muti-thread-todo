@@ -40,7 +40,7 @@ namespace rune
                                                                            rclcpp::SensorDataQoS());
 
         // Debug Publishers
-        this->debug_ = declare_parameter("debug", true);
+        this->debug_ = declare_parameter("debug", false);
         if (this->debug_)
         {
             createDebugPublishers();
