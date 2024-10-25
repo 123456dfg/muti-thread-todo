@@ -3,13 +3,15 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
-                "/usr/include/opencv4",
-                "/opt/intel/openvino_2024.3.0/runtime/**"
+                "${workspaceFolder}/build/**",
+                "/opt/intel/openvino_2024/runtime/**",
+                "/opt/ros/humble/include/**"
+                
             ],
             "defines": [],
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "c23",
-            "cppStandard": "c++14"
+            "cppStandard": "c++17"
         }
     ],
     "version": 4
