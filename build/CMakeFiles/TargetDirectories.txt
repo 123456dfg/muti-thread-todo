@@ -1,3 +1,0 @@
-/home/dfg/backup/RM2025_VISION/muti-thread-todo/build/CMakeFiles/muti_thread.dir
-/home/dfg/backup/RM2025_VISION/muti-thread-todo/build/CMakeFiles/edit_cache.dir
-/home/dfg/backup/RM2025_VISION/muti-thread-todo/build/CMakeFiles/rebuild_cache.dir

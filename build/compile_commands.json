@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/dfg/backup/RM2025_VISION/muti-thread-todo/build",
-  "command": "/usr/bin/g++ -DFMT_LOCALE -DFMT_SHARED -DOV_THREAD=OV_THREAD_TBB -DTBB_PREVIEW_WAITING_FOR_WORKERS=1 -D_GLIBCXX_USE_CXX11_ABI=1 -I/opt/intel/openvino_2024/runtime/include/ie -I/opt/intel/openvino_2024/runtime/include/ngraph -I/opt/intel/openvino_2024/runtime/include/openvino -I/home/dfg/backup/RM2025_VISION/muti-thread-todo -I/usr/include/eigen3 -I/home/dfg/backup/RM2025_VISION/muti-thread-todo/include -isystem /usr/include/opencv4 -isystem /opt/intel/openvino_2024.3.0/runtime/include -g -Wno-error=deprecated-declarations -std=gnu++20 -o CMakeFiles/muti_thread.dir/main.cpp.o -c /home/dfg/backup/RM2025_VISION/muti-thread-todo/main.cpp",
-  "file": "/home/dfg/backup/RM2025_VISION/muti-thread-todo/main.cpp"
-}
-]
